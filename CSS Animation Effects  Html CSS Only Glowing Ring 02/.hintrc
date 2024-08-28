@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-box-reflect"
+        ]
+      }
+    ],
+    "detect-css-reflows/composite": "off",
+    "detect-css-reflows/paint": "off"
+  }
+}

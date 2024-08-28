@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--clr);
+}
+
+:root {
+  --clr: #20415c;
+}
+
+.navigation {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuToggle {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  border: 5px solid var(--clr);
+  background: #ff4886;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transform: translateY(-30px);
+}
+
+.menuToggle::before {
+  content: '+';
+  position: absolute;
+  font-size: 3em;
+  font-weight: 200;
+  color: #fff;
+  transition: 1.5s;
+}
+
+.menuToggle.active::before {
+  transform: rotate(225deg);
+}
+
+.menuToggle i {
+  position: absolute;
+  inset: 0;
+}
+
+.menuToggle i::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: -23px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 3px -6px var(--clr);
+}
+
+.menuToggle i::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  right: -23px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  box-shadow: -3px -6px var(--clr);
+}
+
+.menu {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 70px;
+  z-index: -1;
+  transform: translateY(-30px);
+  transition: transform 0.5s, width 0.5s, height 0.5s;
+  transition-delay: 1s, 0.5s, 0.5s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.menuToggle.active ~ .menu {
+  width: 360px;
+  height: 70px;
+  z-index: 1;
+  transition-delay: 0s, 0.5s, 0.5s;
+  transform: translateY(0px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+.menuToggle.active ~ .menu::before {
+  transition-delay: 0.5s;
+  bottom: -6px;
+}
+
+.menu ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 80px;
+  gap: 35px;
+  z-index: 10;
+}
+
+.menu ul li {
+  list-style: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-30px);
+  transition: 0.25s;
+  transition-delay: 0s;
+  transition-delay: calc(0s + var(--i));
+}
+
+.menu ul li:nth-child(3) {
+  width: 30px;
+}
+
+.menuToggle.active ~ .menu ul li {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: calc(0.75s + var(--i));
+}
+
+.menu ul li a {
+  display: block;
+  font-size: 2em;
+  text-decoration: none;
+  color: #555;
+}
+
+.menu ul li:hover a {
+  color: #ff4886;
+}
